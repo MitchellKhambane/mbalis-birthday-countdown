@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)file:///C:/Users/Student/bday%20cd.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Countdown</title>
+  <link rel="icon" type="image/svg+xml" href="file:///C:/Users/Student/favicon.svg">
+  <style>
+    :root {
+      --bg1: #ff8fab;
+      --bg2: #ffd6e6;
+      --card: rgba(255,255,255,0.16);
+      --card-strong: rgba(255,255,255,0.24);
+      --text: #fffafc;
+      --accent: #fff3b0;
+      --shadow: rgba(104, 22, 55, 0.2);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-size: 20px;
+      animation: floatUp linear forwards;
+      opacity: 0.9;
+      filter: drop-shadow(0 4px 10px rgba(255,255,255,0.4));
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.9) rotate(0deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(110vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(92vw, 760px);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px var(--shadow);
+      border-radius: 28px;
+      padding: 32px 20px 28px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.24);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 8px 18px;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 0 0 26px;
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+
+    .avatar-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #fff5c2, #ffb7c5);
+      border: 4px solid rgba(255,255,255,0.8);
+      box-shadow: 0 12px 30px rgba(92, 18, 52, 0.18);
+      color: #9a3d5e;
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(80px, 1fr));
+      gap: 14px;
+      margin: 26px auto 20px;
+      max-width: 560px;
+    }
+
+    .time-box {
+      background: var(--card-strong);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 18px 8px;
+    }
+
+    .time-value {
+      display: block;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .time-label {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      margin: 10px 0 24px;
+      font-weight: 600;
+    }
+
+    .quote {
+      margin-top: 20px;
+      font-style: italic;
+      color: #fffaf7;
+      opacity: 0.92;
+      font-size: 1.05rem;
+    }
+
+    button {
+      margin-top: 18px;
+      border: none;
+      border-radius: 999px;
+      background: #fff;
+      color: #d65386;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 12px 22px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 24px rgba(123, 35, 66, 0.16);
+    }
+
+    button:hover {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    @media (max-width: 520px) {
+      .countdown {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+      }
+
+      .card {
+        padding: 28px 16px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="hearts-container"><div class="heart" style="left: 57.6307vw; font-size: 31.4327px; animation-duration: 7.48509s;">💕</div><div class="heart" style="left: 53.0177vw; font-size: 19.3222px; animation-duration: 5.23616s;">💗</div><div class="heart" style="left: 95.0908vw; font-size: 23.0157px; animation-duration: 5.35334s;">💕</div><div class="heart" style="left: 6.17264vw; font-size: 28.6183px; animation-duration: 7.03837s;">💖</div><div class="heart" style="left: 21.1239vw; font-size: 25.3987px; animation-duration: 6.85778s;">💝</div><div class="heart" style="left: 22.2583vw; font-size: 22.1316px; animation-duration: 4.08398s;">💝</div><div class="heart" style="left: 6.07464vw; font-size: 25.1318px; animation-duration: 4.38478s;">✨</div><div class="heart" style="left: 35.4038vw; font-size: 22.1696px; animation-duration: 7.04115s;">💕</div><div class="heart" style="left: 4.73747vw; font-size: 30.8007px; animation-duration: 6.60851s;">💗</div><div class="heart" style="left: 92.4808vw; font-size: 20.3567px; animation-duration: 6.07807s;">💖</div><div class="heart" style="left: 50.3017vw; font-size: 22.7671px; animation-duration: 6.93732s;">💝</div><div class="heart" style="left: 70.3258vw; font-size: 30.5019px; animation-duration: 6.82659s;">✨</div><div class="heart" style="left: 25.1882vw; font-size: 27.8528px; animation-duration: 4.39182s;">💗</div><div class="heart" style="left: 86.4884vw; font-size: 19.3414px; animation-duration: 7.08041s;">✨</div></div>
+
+  <div class="card">
+    <div class="badge">🎂 Birthday countdown</div>
+    <h1>Happy Birthday, Mbali! 🎉</h1>
+    <p class="subtitle">The best day is getting closer, and the magic is already here.</p>
+
+    <div class="avatar-wrap">
+      <div class="avatar">M</div>
+    </div>
+
+    <div class="countdown">
+      <div class="time-box">
+        <span id="days" class="time-value">104</span>
+        <span class="time-label">Days</span>
+      </div>
+      <div class="time-box">
+        <span id="hours" class="time-value">02</span>
+        <span class="time-label">Hours</span>
+      </div>
+      <div class="time-box">
+        <span id="minutes" class="time-value">34</span>
+        <span class="time-label">Minutes</span>
+      </div>
+      <div class="time-box">
+        <span id="seconds" class="time-value">06</span>
+        <span class="time-label">Seconds</span>
+      </div>
+    </div>
+
+    <div id="message" class="message">Counting down to your special day...</div>
+    <button id="musicBtn" type="button">🎵 Play birthday vibe</button>
+    <div class="quote">“Every day with you feels like a gift.”</div>
+  </div>
+
+  <script>
+    const birthdayDate = new Date('2026-01-17T00:00:00');
+
+    function getNextBirthday() {
+      const now = new Date();
+      let target = new Date(now.getFullYear(), 0, 17, 0, 0, 0);
+      if (target < now) {
+        target = new Date(now.getFullYear() + 1, 0, 17, 0, 0, 0);
+      }
+      return target;
+    }
+
+    let targetDate = getNextBirthday();
+
+    function updateCountdown() {
+      const now = new Date();
+      let diff = targetDate - now;
+
+      if (diff < 0) {
+        targetDate = getNextBirthday();
+        diff = targetDate - now;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+      if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+        document.getElementById('message').textContent = 'Happy Birthday, Mbali! 🎂✨';
+      } else {
+        document.getElementById('message').textContent = 'Counting down to your special day...';
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function createHeart() {
+      const container = document.getElementById('hearts-container');
+      const heart = document.createElement('div');
+      const symbols = ['💖', '💗', '💝', '💕', '✨'];
+      heart.className = 'heart';
+      heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      heart.style.left = (Math.random() * 100) + 'vw';
+      heart.style.fontSize = (Math.random() * 14 + 18) + 'px';
+      heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      container.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 420);
+
+    let audioContext;
+    let isPlaying = false;
+    let melodyTimer = null;
+
+    function ensureAudio() {
+      if (!audioContext) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) audioContext = new AudioCtx();
+      }
+      if (audioContext && audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+    }
+
+    function playTone(freq, duration, type = 'sine', volume = 0.04) {
+      if (!audioContext) return;
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      oscillator.type = type;
+      oscillator.frequency.value = freq;
+      gainNode.gain.value = volume;
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      oscillator.start();
+      setTimeout(() => {
+        oscillator.stop();
+      }, duration);
+    }
+
+    function playBirthdayVibe() {
+      if (!audioContext) return;
+      const notes = [392, 523.25, 659.25, 523.25, 587.33, 783.99, 659.25, 523.25];
+      let noteIndex = 0;
+      melodyTimer = setInterval(() => {
+        if (!isPlaying) {
+          clearInterval(melodyTimer);
+          melodyTimer = null;
+          return;
+        }
+        playTone(notes[noteIndex % notes.length], 220, 'triangle', 0.05);
+        noteIndex += 1;
+      }, 260);
+    }
+
+    document.getElementById('musicBtn').addEventListener('click', () => {
+      const button = document.getElementById('musicBtn');
+      ensureAudio();
+
+      if (!isPlaying) {
+        isPlaying = true;
+        button.textContent = '⏸️ Pause birthday vibe';
+        playBirthdayVibe();
+      } else {
+        isPlaying = false;
+        button.textContent = '🎵 Play birthday vibe';
+        if (melodyTimer) {
+          clearInterval(melodyTimer);
+          melodyTimer = null;
+        }
+      }
+    });
+  </script>
+
+
+
+</body></html>
